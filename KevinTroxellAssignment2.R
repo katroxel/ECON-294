@@ -12,7 +12,7 @@ KevinTroxellAssignment2$s1a <- nrow(diamonds)
 KevinTroxellAssignment2$s1b <- ncol(diamonds)
 KevinTroxellAssignment2$s1c <- names(diamonds)
 KevinTroxellAssignment2$s1d <- summary(diamonds$price)
-
+rm(KevinTroxellAssignment2$s1e)
 #2
 NHIS<-read.txt("https://github.com/EconomiCurtis/econ294_2015/raw/master/data/NHIS_2007_TSV.txt")
 KevinTroxellAssignment2$s2a <- nrow(NHIS_2007_TSV)
@@ -24,8 +24,10 @@ NHIS_2007_TSV$Weight <- ifelse(NHIS_2007_TSV$weight<900, NHIS_2007_TSV$weight, N
 KevinTroxellAssignment2$s2f <- hist(NHIS_2007_TSV$Weight)
 KevinTroxellAssignment2$s2g <- mean(NHIS_2007_TSV$Weight, na.rm=TRUE)
 KevinTroxellAssignment2$s2h <- median(NHIS_2007_TSV$Weight, na.rm=TRUE)
-KevinTroxellAssignment2$s2i <- ifelse(NHIS_2007_TSV$SEX==2, summary(NHIS_2007_TSV$Weight), NA)
-KevinTroxellAssignment2$s2j <- ifelse(NHIS_2007_TSV$SEX==1, summary(NHIS_2007_TSV$Weight),NA)
+NHIS_2007_TSV$Fweight <- ifelse(NHIS_2007_TSV$SEX==2, NHIS_2007_TSV$weight, NA)
+KevinTroxellAssignment2$s2i <- summary(NHIS_2007_TSV$Fweight)
+NHIS_2007_TSV$Mweight <- ifelse(NHIS_2007_TSV$SEX==1, NHIS_2007_TSV$weight, NA)
+KevinTroxellAssignment2$s2j <- summary(NHIS_2007_TSV$Mweight)
 
 
 #3
