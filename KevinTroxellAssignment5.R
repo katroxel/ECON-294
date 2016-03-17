@@ -26,7 +26,19 @@ violin <- ggplot(diamonds, aes(cut, price)) +
 violin
 
 
-
+for(h in flightsumm$flight){
+  for(i in 1:nrow(flightsumm)){
+    flightsumm$canceled <- flightsumm$daily_delay + 
+      ifelse(flightsumm$daily_delay>h, flightsumm$daily_delay-h, 0)
+    drop <- flightsumm[i,]
+    keep <- flightsumm[-i,]
+    reg.kink <- lm(canceled~daily_delay, family=gaussian, keep)
+    dropfit <- predict(reg.kink,drop,se=FALSE)
+    sqrerr <- (drop$y-as.numeric(dropfit))^2
+    if(i*h==1){results<-data.frame(h, i, sqrerr)}
+    if(i+h>1){results<-rbind(results,data.frame(h,i,sqrerr))}
+  }
+}
 
 #2#
 #a#
